@@ -25,10 +25,12 @@ var stand_collision = load("res://scenes/PlayerStanding.tres")
 var standing_position_offset = Vector2(0, 12.75)
 var crouching_position_offset = Vector2(0, 30)
 
+
 func _ready():
 	$CollisionShape2D.shape = stand_collision
 	$CollisionShape2D.position = standing_position_offset
 	update_animation("idle")
+
 
 func _physics_process(delta):
 	velocity.y += delta * gravity
@@ -47,13 +49,19 @@ func _physics_process(delta):
 
 	# Handle Dash Input
 	if Input.is_action_just_pressed("ui_left"):
-		if current_time - dash_press_times["left"] < dash_input_time and current_time - last_dash_time > dash_cooldown:
+		if (
+			current_time - dash_press_times["left"] < dash_input_time
+			and current_time - last_dash_time > dash_cooldown
+		):
 			is_dashing = true
 			dash_time = dash_duration
 			last_dash_time = current_time
 		dash_press_times["left"] = current_time
 	elif Input.is_action_just_pressed("ui_right"):
-		if current_time - dash_press_times["right"] < dash_input_time and current_time - last_dash_time > dash_cooldown:
+		if (
+			current_time - dash_press_times["right"] < dash_input_time
+			and current_time - last_dash_time > dash_cooldown
+		):
 			is_dashing = true
 			dash_time = dash_duration
 			last_dash_time = current_time
@@ -63,23 +71,23 @@ func _physics_process(delta):
 	if Input.is_action_pressed("ui_left"):
 		direction = -1
 		last_direction = -1
-		
-		if(jump_count == 0 and !is_crouching):
+
+		if jump_count == 0 and !is_crouching:
 			update_animation("walk")
-		elif(jump_count > 0):
+		elif jump_count > 0:
 			update_animation("jump")
-		elif(is_crouching):
+		elif is_crouching:
 			update_animation("crouch")
 	elif Input.is_action_pressed("ui_right"):
 		direction = 1
 		last_direction = 1
-		if(jump_count == 0 and !is_crouching):
+		if jump_count == 0 and !is_crouching:
 			update_animation("walk")
-		elif(jump_count > 0):
+		elif jump_count > 0:
 			update_animation("jump")
-		elif(is_crouching):
+		elif is_crouching:
 			update_animation("crouch")
-			
+
 	else:
 		if is_on_floor() and not is_crouching:
 			update_animation("idle")
@@ -104,17 +112,20 @@ func _physics_process(delta):
 
 	move_and_slide()
 
+
 func crouch():
 	is_crouching = true
-	$CollisionShape2D.shape = crouch_collision 
+	$CollisionShape2D.shape = crouch_collision
 	$CollisionShape2D.position = crouching_position_offset
 	update_animation("crouch")
+
 
 func stand():
 	is_crouching = false
 	$CollisionShape2D.shape = stand_collision
 	$CollisionShape2D.position = standing_position_offset
 	update_animation("idle")
+
 
 func update_animation(state):
 	var anim_sprite = $AnimatedSprite2D
