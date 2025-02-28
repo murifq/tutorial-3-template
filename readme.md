@@ -39,3 +39,7 @@ Pemain dapat merunduk saat berada di tanah menggunakan "ui_down":
 **4. Animasi (polishing)**
 
 Fungsi update_animation(state) memperbarui animasi AnimatedSprite2D berdasarkan status pergerakan pemain.
+
+**Sumber**
+* Daril
+* ChatGPT
