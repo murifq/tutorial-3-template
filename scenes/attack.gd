@@ -10,7 +10,7 @@ func _ready() -> void:
 	connect("body_exited", Callable(self, "_on_body_exited"))
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	# If Spacebar is pressed and enemy is in area, kill it
 	if Input.is_action_just_pressed("ui_select") and enemy_in_area:
 		enemy_in_area.die()
