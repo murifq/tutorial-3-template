@@ -9,10 +9,13 @@ extends CharacterBody2D
 @export var dash_duration = 0.4
 @export var dash_cooldown = 0.5
 @export var dash_input_time = 0.3
+@export var attack_duration = 0.5  # Extended attack duration
 
 var jump_count = 0
 var is_dashing = false
 var is_crouching = false
+var is_attacking = false
+var attack_time = 0
 var dash_time = 0
 var last_dash_time = -dash_cooldown
 var last_direction = 1  # 1 = right, -1 = left
@@ -37,6 +40,12 @@ func _physics_process(delta):
 
 	if is_on_floor():
 		jump_count = 0
+
+	# Handle Attack Duration
+	if is_attacking:
+		attack_time -= delta
+		if attack_time <= 0:
+			is_attacking = false
 
 	# Handle Double Jump
 	if Input.is_action_just_pressed("ui_up") and jump_count < max_jumps:
@@ -67,6 +76,13 @@ func _physics_process(delta):
 			last_dash_time = current_time
 		dash_press_times["right"] = current_time
 
+	# Handle Attack Animation
+	if Input.is_action_just_pressed("ui_accept") and not is_attacking:
+		is_attacking = true
+		attack_time = attack_duration
+		update_animation("attack")
+		return  # Prevent other movement updates when attacking
+
 	# Handle Movement Direction
 	if Input.is_action_pressed("ui_left"):
 		direction = -1
@@ -89,7 +105,7 @@ func _physics_process(delta):
 			update_animation("crouch")
 
 	else:
-		if is_on_floor() and not is_crouching:
+		if is_on_floor() and not is_crouching and not is_attacking:
 			update_animation("idle")
 
 	# Handle Dashing
@@ -141,5 +157,10 @@ func update_animation(state):
 	elif state == "crouch":
 		anim_sprite.animation = "crouching"
 		anim_sprite.flip_h = (last_direction == -1)
+	elif state == "attack":
+		anim_sprite.animation = "attacking"
+		anim_sprite.flip_h = (last_direction == -1)
+		is_attacking = true
+		attack_time = attack_duration
 
 	anim_sprite.play()

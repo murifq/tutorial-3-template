@@ -1,3 +1,6 @@
+**Tutorial 4**
+
+
 Fitur
 
 **1. Double Jump**
@@ -43,3 +46,15 @@ Fungsi update_animation(state) memperbarui animasi AnimatedSprite2D berdasarkan 
 **Sumber**
 * Daril
 * ChatGPT
+
+**Tutorial 5**
+
+Saya menambahkan karakter enemy baru bertipe CharacterBody2D. Saya juga mencari assets karakter baru, lalu meng-animasikannya sesuai dengan tutorial. Saya juga menambahkan audio player untuk menyetel background music, dan mengganti music yang dimainkan sesuai dengan jarak antara player dan enemy (merupakan fitur polishing). Lalu, setiap kali player menyerang enemy, maka akan diplay soundeffect suara menyerang. 
+
+Assets:
+* https://kenney.nl/assets/toon-characters-1
+
+Audio Assets:
+* https://freesound.org/people/guillermochicasonido/sounds/691652/
+* https://freesound.org/people/guillermochicasonido/sounds/691651/
+* https://kenney.nl/assets/rpg-audio

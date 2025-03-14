@@ -1,0 +1,104 @@
+[gd_scene load_steps=14 format=3 uid="uid://cgjb4hou327ry"]
+
+[ext_resource type="Texture2D" uid="uid://mvfmt52nwlso" path="res://assets/kenney_toon-characters-1/Zombie/Tilesheet/character_zombie_sheet.png" id="1_yq4x7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c03oi"]
+atlas = ExtResource("1_yq4x7")
+region = Rect2(768, 512, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ovydv"]
+atlas = ExtResource("1_yq4x7")
+region = Rect2(0, 0, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nruuf"]
+atlas = ExtResource("1_yq4x7")
+region = Rect2(192, 0, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7l5s"]
+atlas = ExtResource("1_yq4x7")
+region = Rect2(0, 512, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0qu3e"]
+atlas = ExtResource("1_yq4x7")
+region = Rect2(96, 512, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cl81"]
+atlas = ExtResource("1_yq4x7")
+region = Rect2(192, 512, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1em1"]
+atlas = ExtResource("1_yq4x7")
+region = Rect2(288, 512, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxu10"]
+atlas = ExtResource("1_yq4x7")
+region = Rect2(384, 512, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_878wr"]
+atlas = ExtResource("1_yq4x7")
+region = Rect2(480, 512, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_goui5"]
+atlas = ExtResource("1_yq4x7")
+region = Rect2(576, 512, 96, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i4b12"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c03oi")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ovydv")
+}],
+"loop": true,
+"name": &"idling",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nruuf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v7l5s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0qu3e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2cl81")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p1em1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rxu10")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_878wr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_goui5")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h7l4g"]
+size = Vector2(68, 98)
+
+[node name="Enemy" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_i4b12")
+animation = &"death"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 13)
+shape = SubResource("RectangleShape2D_h7l4g")
