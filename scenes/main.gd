@@ -2,12 +2,12 @@ extends Node2D
 
 var main_music = preload("res://assets/audio/main_music.wav")
 var combat_music = preload("res://assets/audio/combat_music.wav")
+var combat_distance = 300
 
 @onready var player = $Player
 @onready var enemy = $Enemy
 @onready var audio_player = $AudioStreamPlayer2D
 
-var combat_distance = 300
 
 
 func play_music(music):
