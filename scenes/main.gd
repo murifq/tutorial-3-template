@@ -9,7 +9,6 @@ var combat_distance = 300
 @onready var audio_player = $AudioStreamPlayer2D
 
 
-
 func play_music(music):
 	if audio_player.stream != music:
 		audio_player.stream = music
